@@ -16,7 +16,7 @@ export class Product {
   @Column('decimal', { precision: 10, scale: 2 })
   priceUSD: number;
 
-  @Column('decimal', { precision: 12, scale: 2 })
+  @Column('decimal', { precision: 12, scale: 2 ,default: 0 })
   priceBS: number;
 
   @Column('int', { default: 0 })
