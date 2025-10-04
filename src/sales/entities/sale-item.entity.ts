@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne ,JoinColumn} from 'typeorm';
 import { Sale } from './sale.entity';
 import { Product } from '../../products/entities/product.entity';
+import { decimalTransformer } from 'src/common/transformers/decimal.transformer';
 
 @Entity('sale_items')
 export class SaleItem {
@@ -16,11 +17,11 @@ export class SaleItem {
   @Column('int')
   quantity: number;
 
-  @Column('decimal', { precision: 10, scale: 2 })
-  priceUSD: number;
+ @Column('decimal', { precision: 10, scale: 2, transformer: decimalTransformer })
+priceUSD: number;
 
-  @Column('decimal', { precision: 12, scale: 2 })
-  priceBS: number;
+@Column('decimal', { precision: 12, scale: 2, transformer: decimalTransformer })
+priceBS: number;
 
   @ManyToOne(() => Sale, (sale) => sale.items, { onDelete: 'CASCADE' })
  @JoinColumn({ name: 'saleId' })

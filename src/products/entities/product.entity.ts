@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { SaleItem } from '../../sales/entities/sale-item.entity';
+import { decimalTransformer } from 'src/common/transformers/decimal.transformer';
 
 @Entity('products')
 export class Product {
@@ -13,10 +14,10 @@ export class Product {
   @Column({ length: 150 })
   name: string;
 
-  @Column('decimal', { precision: 10, scale: 2 })
+   @Column('decimal', { precision: 10, scale: 2, transformer: decimalTransformer })
   priceUSD: number;
 
-  @Column('decimal', { precision: 12, scale: 2 ,default: 0 })
+  @Column('decimal', { precision: 12, scale: 2, transformer: decimalTransformer })
   priceBS: number;
 
   @Column('int', { default: 0 })
