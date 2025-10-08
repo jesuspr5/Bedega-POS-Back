@@ -12,7 +12,9 @@ async function bootstrap() {
    const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document); // La ruta donde se verá la documentación
    app.enableCors({
-    origin: 'http://localhost:5173', // o '*' para cualquier origen
+    origin:[
+      'http://localhost:5173',
+      'https://bedega-pos-back-1.onrender.com'] ,// o '*' para cualquier origen
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
