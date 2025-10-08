@@ -14,7 +14,7 @@ async function bootstrap() {
    app.enableCors({
     origin:[
       'http://localhost:5173',
-      'https://bedega-pos-back-1.onrender.com'] ,// o '*' para cualquier origen
+      'https://bedega-pos.vercel.app/'] ,// o '*' para cualquier origen
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
