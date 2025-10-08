@@ -11,10 +11,10 @@ export class BcvController {
     const rate = await this.bcvService.getRate();
     return { rate };
   }
-  @Patch()
-  setRate(@Body('rate') rate: number) {
-    return { rate: this.bcvService.setRate(rate) };
-  }
+  // @Patch()
+  // setRate(@Body('rate') rate: number) {
+  //   return { rate: this.bcvService.setRate(rate) };
+  // }
 
     @Post()
   async updateRate(@Body() dto: UpdateBcvDto) {
