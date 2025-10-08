@@ -12,10 +12,7 @@ async function bootstrap() {
    const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document); // La ruta donde se verá la documentación
    app.enableCors({
-    origin:[
-      '*',
-      'http://localhost:5173',
-      'https://bedega-pos.vercel.app/'] ,// o '*' para cualquier origen
+    origin:'*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
