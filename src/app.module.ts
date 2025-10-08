@@ -14,7 +14,7 @@ import { BcvModule } from './bcv/bcv.module';
       imports: [ConfigModule],
       inject: [ConfigService],
        useFactory: (config: ConfigService) => ({
-        type: 'mysql',
+        type: 'postgres',
         host: config.get<string>('DB_HOST'),
         port: config.get<number>('DB_PORT'),
         username: config.get<string>('DB_USER'),
@@ -22,8 +22,12 @@ import { BcvModule } from './bcv/bcv.module';
         database: config.get<string>('DB_NAME'),
         autoLoadEntities: true,
         synchronize: true,
+        ssl:  true,
+      
       }),
     })
+
+    
     ,ProductsModule
     , SalesModule
     , BcvModule],
