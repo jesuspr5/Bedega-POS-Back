@@ -1,7 +1,8 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString, Min } from 'class-validator';
+import { IsEmpty, IsNotEmpty, IsNumber, IsOptional, IsString, Min ,} from 'class-validator';
 
 export class CreateProductDto {
  @IsOptional()
+ @IsEmpty()
   @IsString()
   barcode?: string; 
 
