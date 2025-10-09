@@ -2,7 +2,6 @@ import { IsEmpty, IsNotEmpty, IsNumber, IsOptional, IsString, Min ,} from 'class
 
 export class CreateProductDto {
  @IsOptional()
- @IsEmpty()
   @IsString()
   barcode?: string; 
 
