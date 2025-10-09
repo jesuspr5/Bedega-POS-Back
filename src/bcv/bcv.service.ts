@@ -50,6 +50,7 @@ export class BcvService {
     }
 
     await this.settingsRepo.save(setting);
+    await this.setRate(dto.rate);
     return Number(setting.value);
   }
 
