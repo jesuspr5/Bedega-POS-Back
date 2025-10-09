@@ -18,6 +18,10 @@ export class CreateProductDto {
   stock: number;
 
   @IsOptional()
+  @IsNumber()
+  incremento?: number; 
+
+  @IsOptional()
   @IsString()
   image?: string;
 }

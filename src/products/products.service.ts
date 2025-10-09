@@ -28,9 +28,10 @@ export class ProductsService {
   async create(dto: CreateProductDto) {
     const bcvRate = await this.bcvService.getRate();
     const priceUSDNumber = typeof dto.priceUSD === 'string' ? parseFloat(dto.priceUSD) : dto.priceUSD;
+    const incremento = dto.incremento ?? 0; 
     const product = this.productRepo.create({
       ...dto,
-      priceBS: Math.round(priceUSDNumber * bcvRate), // calcular al crear
+       priceBS: Number((priceUSDNumber * bcvRate * (1 + incremento / 100)).toFixed(2)), 
     });
     return this.productRepo.save(product);
   }
@@ -74,13 +75,14 @@ async findAll() {
     if (dto.priceUSD !== undefined) product.priceUSD = dto.priceUSD;
     if (dto.stock !== undefined) product.stock = dto.stock;
     if (dto.barcode !== undefined) product.barcode = dto.barcode;
+    if (dto.incremento !== undefined) product.incremento = dto.incremento;
     if (dto.image !== undefined) product.image = dto.image;
 
     const rate = await this.bcvService.getRate();
     const priceUSDNumber =
       typeof product.priceUSD === 'string' ? parseFloat(product.priceUSD) : product.priceUSD;
-    product.priceBS = Number((priceUSDNumber * rate).toFixed(2));
-
+       const incremento = product.incremento ?? 0;
+   product.priceBS = Number((priceUSDNumber * rate * (1 + incremento / 100)).toFixed(2));
     return this.productRepo.save(product);
   }
 

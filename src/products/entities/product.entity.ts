@@ -17,6 +17,10 @@ export class Product {
    @Column('decimal', { precision: 10, scale: 2, transformer: decimalTransformer })
   priceUSD: number;
 
+  @Column({ type: 'float', default: 0 })
+  incremento: number; // porcentaje de ganancia, ej: 10, 20, etc.
+
+
   @Column('decimal', { precision: 12, scale: 2, transformer: decimalTransformer })
   priceBS: number;
 
