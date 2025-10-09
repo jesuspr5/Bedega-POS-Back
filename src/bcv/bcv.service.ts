@@ -27,10 +27,10 @@ export class BcvService {
   async setRate(newRate: number) {
     this.rate = newRate;
 
-    // Recalcular priceBS de todos los productos
     const products = await this.productsService.findAll();
     for (const product of products) {
-      product.priceBS = Math.round(product.priceUSD * this.rate);
+       const incremento = product.incremento ?? 0;
+      product.priceBS = Math.round(product.priceUSD * this.rate * (1 + incremento / 100));
       await this.productsService.update(product.id, { priceUSD: product.priceUSD });
     }
 

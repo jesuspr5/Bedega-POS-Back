@@ -17,12 +17,17 @@ export class ProductsService {
   // Recalcula priceBS de todos los productos cuando cambia la tasa BCV
   async recalculateAllPriceBS(newRate: number) {
     const products = await this.productRepo.find();
-    for (const p of products) {
-      const priceUSDNumber =
-        typeof p.priceUSD === 'string' ? parseFloat(p.priceUSD) : p.priceUSD;
-      p.priceBS = Number((priceUSDNumber * newRate).toFixed(2));
-      await this.productRepo.save(p);
-    }
+
+  const updated = products.map(p => {
+    const priceUSDNumber = typeof p.priceUSD === 'string' ? parseFloat(p.priceUSD) : p.priceUSD;
+    const incremento = p.incremento ?? 0;
+    return {
+      ...p,
+      priceBS: Number((priceUSDNumber * newRate * (1 + incremento / 100)).toFixed(2)),
+    };
+  });
+
+  await this.productRepo.save(updated); 
   }
 
   async create(dto: CreateProductDto) {
@@ -46,7 +51,8 @@ async findAll() {
     priceBS: Number((p.priceUSD * rate).toFixed(2)),
     stock: p.stock,
     image: p.image,
-    barcode: p.barcode,   // 👈 aseguramos que viaje al frontend
+    barcode: p.barcode,
+    incremento : p.incremento   // 👈 aseguramos que viaje al frontend
   }));
 }
 
@@ -63,7 +69,8 @@ async findAll() {
     priceBS: Number((product.priceUSD * rate).toFixed(2)),
     stock: product.stock,
     image: product.image,
-    barcode: product.barcode,  // 👈 también aquí
+    barcode: product.barcode,
+    incremento : product.incremento   // 👈 también aquí
   };
 }
 
