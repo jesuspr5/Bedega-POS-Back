@@ -73,6 +73,7 @@ async findAll() {
     if (dto.name !== undefined) product.name = dto.name;
     if (dto.priceUSD !== undefined) product.priceUSD = dto.priceUSD;
     if (dto.stock !== undefined) product.stock = dto.stock;
+    if (dto.barcode !== undefined) product.barcode = dto.barcode;
     if (dto.image !== undefined) product.image = dto.image;
 
     const rate = await this.bcvService.getRate();
