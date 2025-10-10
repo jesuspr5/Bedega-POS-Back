@@ -17,8 +17,9 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // await app.listen(3000);
-  // console.log(`Aplicación corriendo en http://localhost:3000`);
-  // console.log(`Swagger disponible en http://localhost:3000/api`);
+  await app.listen(3000);
+  console.log(`Aplicación corriendo en http://localhost:3000`);
+  console.log(`Swagger disponible en http://localhost:3000/api`);
+  console.log("runin app")
 }
 bootstrap();
