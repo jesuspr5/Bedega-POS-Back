@@ -5,8 +5,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
-    .setTitle('Mi API')
-    .setDescription('Documentación de mi API con NestJS y Swagger')
+    .setTitle('API REST BODEGA')
+    .setDescription('Documentación de mi API REST')
     .setVersion('1.0')
     .build();
    const document = SwaggerModule.createDocument(app, config);
@@ -20,6 +20,5 @@ async function bootstrap() {
   await app.listen(3000);
   console.log(`Aplicación corriendo en http://localhost:3000`);
   console.log(`Swagger disponible en http://localhost:3000/api`);
-  console.log("runin app")
 }
 bootstrap();
