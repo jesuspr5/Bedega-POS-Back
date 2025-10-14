@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
+console.log('DB_SSL =', process.env.DB_SSL); 
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
     .setTitle('API REST BODEGA')
