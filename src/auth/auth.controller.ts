@@ -9,11 +9,15 @@ import { ApiTags, ApiBody } from '@nestjs/swagger';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('login')
-  @ApiBody({ type: LoginDto })
-  async login(@Body() loginDto: LoginDto) {
-    const token = await this.authService.login(loginDto);
-    if (!token) throw new UnauthorizedException('Credenciales incorrectas');
-    return token;
+@Post('login')
+@ApiBody({ type: LoginDto })
+async login(@Body() loginDto: LoginDto) {
+  const user = await this.authService.validateUser(loginDto.email, loginDto.password);
+
+  if (!user) {
+    throw new UnauthorizedException('Credenciales incorrectas');
   }
+  return this.authService.login(user);
+}
+
 }

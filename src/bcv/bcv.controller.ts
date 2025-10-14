@@ -16,7 +16,7 @@ export class BcvController {
   // setRate(@Body('rate') rate: number) {
   //   return { rate: this.bcvService.setRate(rate) };
   // }
-//@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
     @Post()
   async updateRate(@Body() dto: UpdateBcvDto) {
     const rate = await this.bcvService.updateBcvRate(dto);

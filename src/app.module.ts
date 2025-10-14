@@ -23,7 +23,7 @@ import { UsersModule } from './users/users.module';
         password: config.get<string>('DB_PASSWORD'),
         database: config.get<string>('DB_DATABASE'),
         autoLoadEntities: true,
-        synchronize: false, // ⚠️ Mantener false en producción
+        synchronize: true, // ⚠️ Mantener false en producción
         ssl: config.get<string>('DB_SSL')?.toLowerCase() === 'true'
           ? { rejectUnauthorized: false }
           : false,
