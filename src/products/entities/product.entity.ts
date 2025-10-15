@@ -7,7 +7,7 @@ export class Product {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true, nullable: true }) // 👈 código de barras único opcional
+  @Column({ unique: true, nullable: true ,default :null}) // 👈 código de barras único opcional
   barcode: string;
 
 
